@@ -19,7 +19,7 @@ namespace Market.Api.Controllers
         public async ValueTask<IActionResult> GetAll()
         {
             var result = await Task.Run(userService.GetAll);
-            return result.Any() ? Ok(result) : NoContent();
+            return Ok(result);
         }
 
         [HttpGet("{userId:guid}")]

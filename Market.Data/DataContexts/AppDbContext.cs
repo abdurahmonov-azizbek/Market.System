@@ -17,5 +17,26 @@ namespace Market.Data.DataContexts
         {
             this.Database.Migrate();
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasQueryFilter(user => !user.IsDeleted);
+
+            modelBuilder.Entity<Category>()
+                .HasQueryFilter(c => !c.IsDeleted);
+
+            modelBuilder.Entity<Product>()
+                .HasQueryFilter(c => !c.IsDeleted);
+
+            modelBuilder.Entity<Expense>()
+                .HasQueryFilter(c => !c.IsDeleted);
+
+            modelBuilder.Entity<Order>()
+                .HasQueryFilter(c => !c.IsDeleted);
+
+            modelBuilder.Entity<ReturnedProduct>()
+                .HasQueryFilter(r => !r.IsDeleted);
+        }
     }
 }
